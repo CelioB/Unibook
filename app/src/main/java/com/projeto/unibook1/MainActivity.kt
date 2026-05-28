@@ -1,0 +1,557 @@
+package com.projeto.unibook1
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+// Tema
+import com.projeto.unibook1.ui.theme.Unibook1Theme
+
+// Telas Gerais e Início
+import com.projeto.unibook1.usuario.mapa.MapScreen
+import com.projeto.unibook1.telasgerais.TelaReservaArmario
+import com.projeto.unibook1.telasgerais.AcessoBiblioteca
+import com.projeto.unibook1.usuario.Inicio.TelaInicial
+import com.projeto.unibook1.usuario.Inicio.ArmarioScreen
+import com.projeto.unibook1.usuario.Inicio.TelaReservas
+import com.projeto.unibook1.usuario.Inicio.NotificacoesScreen
+import com.projeto.unibook1.usuario.Inicio.PerdiScreen
+
+// Telas de Livros
+import com.projeto.unibook1.usuario.livro.LivroPesquisaScreen
+import com.projeto.unibook1.usuario.livro.LivroInsightScreen
+import com.projeto.unibook1.usuario.livro.LivroRec2Screen
+import com.projeto.unibook1.usuario.livro.LivroMainScreen
+import com.projeto.unibook1.usuario.livro.LivroProfessoresScreen
+import com.projeto.unibook1.usuario.livro.LivroReviewScreen
+import com.projeto.unibook1.usuario.livro.LivroDetalhesScreen  // ← adicionado
+import com.projeto.unibook1.usuario.livro.ProfessorPerfilScreen
+
+// Telas Admin
+import com.projeto.unibook1.ui.admin.AdminLoginScreen
+import com.projeto.unibook1.ui.admin.AdminRegisterScreen
+import com.projeto.unibook1.admin.AdminMainScreen
+import com.projeto.unibook1.admin.ProfileScreen as AdminProfileScreen
+import com.projeto.unibook1.admin.RecuperarSenhaScreen
+import com.projeto.unibook1.admin.DefinirSenhaScreen
+import com.projeto.unibook1.admin.AdminAdicionarLivroScreen
+import com.projeto.unibook1.admin.AdminEditarLivroScreen
+import com.projeto.unibook1.admin.AdminLivros
+import com.projeto.unibook1.admin.AdminEmprestimos
+import com.projeto.unibook1.admin.AdminDetalhesSolicitacaoScreen
+import com.projeto.unibook1.admin.AdminScannerScreen
+import com.projeto.unibook1.admin.AdminConcluirScreen
+import com.projeto.unibook1.admin.AdminGestaoEmprestimos
+import com.projeto.unibook1.admin.AdminPerfilSolicitacao
+import com.projeto.unibook1.admin.AdminAlunosBloqueados
+import com.projeto.unibook1.admin.AdminPerfilBloqueado
+import com.projeto.unibook1.admin.AdminEmprestimosAtrasados
+import com.projeto.unibook1.admin.AdminDetalhesAtraso
+import com.projeto.unibook1.admin.AdminEmprestimosRegulares
+import com.projeto.unibook1.admin.AdminPerfilEmprestimo
+
+// Telas Aluno - Cadastro/Login
+import com.projeto.unibook1.usuario.cadastro.CadastroScreen
+import com.projeto.unibook1.usuario.cadastro.DefinirNovaSenhaScreen
+import com.projeto.unibook1.usuario.cadastro.LoginAlunoScreen
+import com.projeto.unibook1.usuario.cadastro.SelecaoScreen
+import com.projeto.unibook1.usuario.cadastro.SuporteAlunoScreen
+import com.projeto.unibook1.usuario.cadastro.ChatScreen
+import com.projeto.unibook1.usuario.cadastro.OnboardingScreen
+import com.projeto.unibook1.usuario.cadastro.RecuperarSenhaScreen as RecuperarSenhaAlunoScreen
+
+// Telas Aluno - Perfil
+import com.projeto.unibook1.usuario.perfil.ProfileScreen as AlunoProfileScreen
+import com.projeto.unibook1.usuario.perfil.PrivacyDataScreen
+import com.projeto.unibook1.usuario.perfil.NotificationPreferencesScreen
+import com.projeto.unibook1.usuario.perfil.SettingsScreen
+
+// Suporte
+import com.projeto.unibook1.usuario.suporte.FAQScreen
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            Unibook1Theme {
+
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "selecao"
+                ) {
+
+                    // ══════════════════════════════════════════
+                    // SELEÇÃO (PONTO DE ENTRADA)
+                    // ══════════════════════════════════════════
+
+                    composable("selecao") {
+                        SelecaoScreen(
+                            onAlunoClick = { navController.navigate("login_aluno") },
+                            onAdminClick = { navController.navigate("login_admin") }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // ADMIN - LOGIN E CADASTRO
+                    // ══════════════════════════════════════════
+
+                    composable("login_admin") {
+                        AdminLoginScreen(
+                            onNavigateToRegister       = { navController.navigate("admin_register") },
+                            onNavigateToForgotPassword = { navController.navigate("forgot_password") },
+                            onLoginSuccess = {
+                                navController.navigate("admin_home") {
+                                    popUpTo("selecao") { inclusive = false }
+                                }
+                            }
+                        )
+                    }
+
+                    composable("admin_register") {
+                        AdminRegisterScreen(
+                            onBackToLogin = {
+                                navController.navigate("login_admin") {
+                                    popUpTo("login_admin") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    composable("forgot_password") {
+                        RecuperarSenhaScreen(
+                            onNavigateToLogin = {
+                                navController.navigate("login_admin") {
+                                    popUpTo("login_admin") { inclusive = true }
+                                }
+                            },
+                            onNavigateToRegister = {
+                                navController.navigate("admin_register") {
+                                    popUpTo("login_admin")
+                                }
+                            }
+                        )
+                    }
+
+                    composable("definir_senha_admin") {
+                        DefinirSenhaScreen(
+                            onNavigateToLogin = {
+                                navController.navigate("login_admin") {
+                                    popUpTo("login_admin") { inclusive = true }
+                                }
+                            },
+                            onNavigateToRegister = { navController.navigate("admin_register") }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // ADMIN - TELAS PRINCIPAIS
+                    // ══════════════════════════════════════════
+
+                    composable("admin_home") {
+                        AdminMainScreen(
+                            onProfileClick      = { navController.navigate("admin_profile") },
+                            onOpenScannerClick  = { navController.navigate("admin_scanner") },
+                            onStudentClick      = { _ -> },
+                            onNavigateToHome        = { },
+                            onNavigateToEmprestimos = { navController.navigate("admin_gestao_emprestimos") },
+                            onNavigateToLivros      = { navController.navigate("admin_livros") }
+                        )
+                    }
+
+                    composable("admin_profile") {
+                        AdminProfileScreen(
+                            onBackClick                 = { navController.popBackStack() },
+                            onChangeProfilePictureClick = { }
+                        )
+                    }
+
+                    composable("admin_livros") {
+                        AdminLivros(
+                            onNavigateToHome        = { navController.navigate("admin_home") },
+                            onNavigateToEmprestimos = { navController.navigate("admin_gestao_emprestimos") },
+                            onNavigateToLivros      = { },
+                            onNavigateToEditBook    = { navController.navigate("admin_editar_livro") },
+                            onNavigateToAddBook     = { navController.navigate("admin_add_book") }
+                        )
+                    }
+
+                    composable("admin_editar_livro") {
+                        AdminEditarLivroScreen(
+                            onBack                  = { navController.popBackStack() },
+                            onNavigateToHome        = { navController.navigate("admin_home") },
+                            onNavigateToEmprestimos = { navController.navigate("admin_emprestimos") },
+                            onNavigateToLivros      = { navController.navigate("admin_livros") }
+                        )
+                    }
+
+                    composable("admin_add_book") {
+                        AdminAdicionarLivroScreen(
+                            onBack                  = { navController.popBackStack() },
+                            onNavigateToHome        = { navController.navigate("admin_home") },
+                            onNavigateToEmprestimos = { navController.navigate("admin_emprestimos") },
+                            onNavigateToLivros      = { navController.navigate("admin_livros") }
+                        )
+                    }
+
+                    composable("admin_scanner") {
+                        AdminScannerScreen(
+                            onBackClick   = { navController.popBackStack() },
+                            onScanSuccess = {
+                                navController.navigate("admin_scan_aluno") {
+                                    popUpTo("admin_scanner") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    composable("admin_scan_aluno") {
+                        AdminConcluirScreen(
+                            onClose    = { navController.popBackStack("admin_home", inclusive = false) },
+                            onConcluir = { navController.popBackStack("admin_home", inclusive = false) }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // ADMIN - GESTÃO DE EMPRÉSTIMOS
+                    // ══════════════════════════════════════════
+
+                    composable("admin_gestao_emprestimos") {
+                        AdminGestaoEmprestimos(
+                            onNavigateToSolicitacoes = { navController.navigate("admin_emprestimos") },
+                            onNavigateToRegulares    = { navController.navigate("admin_regulares") },
+                            onNavigateToIrregulares  = { navController.navigate("admin_atrasados") },
+                            onNavigateToBloqueados   = { navController.navigate("admin_bloqueados") },
+                            onNavigateToHome         = { navController.navigate("admin_home") },
+                            onNavigateToEmprestimos  = { },
+                            onNavigateToLivros       = { navController.navigate("admin_livros") }
+                        )
+                    }
+
+                    composable("admin_emprestimos") {
+                        AdminEmprestimos(
+                            onStudentClick          = { navController.navigate("detalhes_solicitacao") },
+                            BackClick               = { navController.popBackStack() },
+                            onNavigateToHome        = { navController.navigate("admin_home") },
+                            onNavigateToEmprestimos = { },
+                            onNavigateToLivros      = { navController.navigate("admin_livros") }
+                        )
+                    }
+
+                    composable("detalhes_solicitacao") {
+                        AdminDetalhesSolicitacaoScreen(
+                            onCloseClick = { navController.popBackStack() },
+                            onNavigateToHome = {
+                                navController.navigate("admin_home") {
+                                    popUpTo("admin_home") { inclusive = true }
+                                }
+                            },
+                            onNavigateToEmprestimos = {
+                                navController.navigate("admin_emprestimos") {
+                                    popUpTo("admin_home") { saveState = true }
+                                    restoreState = true
+                                }
+                            },
+                            onNavigateToLivros = {
+                                navController.navigate("admin_livros") {
+                                    popUpTo("admin_home") { saveState = true }
+                                    restoreState = true
+                                }
+                            }
+                        )
+                    }
+
+                    composable("admin_perfil_solicitacao") {
+                        AdminPerfilSolicitacao(onBack = { navController.popBackStack() })
+                    }
+
+                    composable("admin_regulares") {
+                        AdminEmprestimosRegulares(
+                            onBack       = { navController.popBackStack() },
+                            onAlunoClick = { navController.navigate("admin_perfil_emprestimo") }
+                        )
+                    }
+
+                    composable("admin_perfil_emprestimo") {
+                        AdminPerfilEmprestimo(onBack = { navController.popBackStack() })
+                    }
+
+                    composable("admin_atrasados") {
+                        AdminEmprestimosAtrasados(
+                            onBack       = { navController.popBackStack() },
+                            onAlunoClick = { navController.navigate("admin_detalhes_atraso") }
+                        )
+                    }
+
+                    composable("admin_detalhes_atraso") {
+                        AdminDetalhesAtraso(onBack = { navController.popBackStack() })
+                    }
+
+                    composable("admin_bloqueados") {
+                        AdminAlunosBloqueados(
+                            onBack       = { navController.popBackStack() },
+                            onAlunoClick = { navController.navigate("admin_perfil_bloqueado") }
+                        )
+                    }
+
+                    composable("admin_perfil_bloqueado") {
+                        AdminPerfilBloqueado(onBack = { navController.popBackStack() })
+                    }
+
+                    // ══════════════════════════════════════════
+                    // MAPA E ARMÁRIO
+                    // ══════════════════════════════════════════
+
+                    composable("mapa") {
+                        MapScreen(
+                            navController  = navController,
+                            onReservaClick = { navController.navigate("armario_screen") }
+                        )
+                    }
+
+                    composable("armario_screen") {
+                        ArmarioScreen(
+                            navController     = navController,
+                            onBackClick       = { navController.popBackStack() },
+                            onPerdiChaveClick = { navController.navigate("perdi_chave") }
+                        )
+                    }
+
+                    composable("perdi_chave") {
+                        PerdiScreen(
+                            navController = navController,
+                            onBackClick = { navController.popBackStack() }
+                        )
+                    }
+
+                    composable("reserva") {
+                        TelaReservaArmario()
+                    }
+
+                    // ══════════════════════════════════════════
+                    // ALUNO - LOGIN E CADASTRO
+                    // ══════════════════════════════════════════
+
+                    composable("login_aluno") {
+                        LoginAlunoScreen(
+                            onNavigateToCadastro = { navController.navigate("cadastro") },
+                            onNavigateToSuporte  = { navController.navigate("suporte") },
+                            onEsqueceuSenha      = { navController.navigate("recuperar_senha_aluno") },
+                            onLoginSucesso = {
+                                navController.navigate("onboarding") {
+                                    popUpTo("selecao") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    composable("cadastro") {
+                        CadastroScreen(
+                            onNavigateToLogin   = { navController.navigate("login_aluno") },
+                            onNavigateToSuporte = { navController.navigate("suporte") },
+                            emailsJaCadastrados = listOf("aluno@unifor.br")
+                        )
+                    }
+
+                    composable("recuperar_senha_aluno") {
+                        RecuperarSenhaAlunoScreen(
+                            onVoltarLogin = { navController.navigate("login_aluno") },
+                            onContinuar   = { navController.navigate("definir_nova_senha_aluno") }
+                        )
+                    }
+
+                    composable("definir_nova_senha_aluno") {
+                        DefinirNovaSenhaScreen(
+                            onVoltarLogin = { navController.navigate("login_aluno") },
+                            onSenhaAtualizada = {
+                                navController.navigate("login_aluno") {
+                                    popUpTo("login_aluno") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    composable("onboarding") {
+                        OnboardingScreen(
+                            onPular = {
+                                navController.navigate("tela_inicial") {
+                                    popUpTo("onboarding") { inclusive = true }
+                                }
+                            },
+                            onConcluir = {
+                                navController.navigate("tela_inicial") {
+                                    popUpTo("onboarding") { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // ALUNO - TELAS PRINCIPAIS
+                    // ══════════════════════════════════════════
+
+                    composable("tela_inicial") {
+                        TelaInicial(
+                            onReservaClick = { navController.navigate("historico") },
+                            onQrCodeClick  = { navController.navigate("acesso_biblioteca") },
+                            onMapaClick    = { navController.navigate("mapa") },
+                            onArmarioClick = { navController.navigate("armario_screen") },
+                            onSearchClick  = { navController.navigate("pesquisa") },
+                            onLivrosClick  = { navController.navigate("livros_main") },
+                            onPerfilClick  = { navController.navigate("perfil") },
+                            onNotificacoesClick = { navController.navigate("notificacoes_view") },
+                            onRenovarClick = { navController.navigate("historico") }
+                        )
+                    }
+
+                    composable("acesso_biblioteca") {
+                        AcessoBiblioteca(
+                            navController = navController,
+                            onBackClick = { navController.popBackStack() }
+                        )
+                    }
+
+                    composable("notificacoes_view") {
+                        NotificacoesScreen(navController = navController)
+                    }
+
+                    composable("perfil") {
+                        AlunoProfileScreen(
+                            onBackClick = {
+                                navController.navigate("tela_inicial") {
+                                    popUpTo("tela_inicial") { inclusive = false }
+                                }
+                            },
+                            onSettingsClick     = { navController.navigate("configuracoes") },
+                            onHistoricoClick    = { navController.navigate("historico") },
+                            onPrivacidadeClick  = { navController.navigate("privacidade") },
+                            onNotificacoesClick = { navController.navigate("notificacoes") },
+                            onHelpAndSupport    = { navController.navigate("suporte") },
+                            onViewSharedLocker  = { navController.navigate("armario_screen") },
+                            onMapaClick         = { navController.navigate("mapa") },
+                            onLivrosClick       = { navController.navigate("livros_main") },
+                            onLogout = {
+                                navController.navigate("selecao") {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
+                    composable(route = "configuracoes") {
+                        SettingsScreen(
+                            onNavigateToAlterarSenha = { navController.navigate("definir_nova_senha_aluno") },
+                            onLGPD                   = { navController.navigate("privacidade") },
+                            onNavigateToLogin = {
+                                navController.navigate("selecao") {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            },
+                            onBack = { navController.popBackStack() }
+                        )
+                    }
+
+                    composable(route = "privacidade") {
+                        val context = LocalContext.current
+                        PrivacyDataScreen(
+                            onNavigateBack      = { navController.popBackStack() },
+                            onReadPrivacyPolicy = {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://www.gov.br/esporte/pt-br/acesso-a-informacao/lgpd")
+                                )
+                                context.startActivity(intent)
+                            }
+                        )
+                    }
+
+                    composable("notificacoes") {
+                        NotificationPreferencesScreen(
+                            onBack = { navController.popBackStack() }
+                        )
+                    }
+
+                    composable("historico") {
+                        TelaReservas(
+                            navController = navController,
+                            onBackClick   = { navController.popBackStack() }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // SUPORTE
+                    // ══════════════════════════════════════════
+
+                    composable("suporte") {
+                        SuporteAlunoScreen(
+                            onVoltar          = { navController.popBackStack() },
+                            onIniciarConversa = { categoria ->
+                                navController.navigate("chat/$categoria")
+                            },
+                            onAbrirFaq = { navController.navigate("faq") }
+                        )
+                    }
+
+                    composable("chat/{categoria}") { backStackEntry ->
+                        val categoria = backStackEntry.arguments?.getString("categoria") ?: "geral"
+                        ChatScreen(
+                            categoria = categoria,
+                            onVoltar  = { navController.popBackStack() }
+                        )
+                    }
+
+                    composable("faq") {
+                        FAQScreen(
+                            onVoltar = { navController.popBackStack() }
+                        )
+                    }
+
+                    // ══════════════════════════════════════════
+                    // LIVROS
+                    // ══════════════════════════════════════════
+
+                    composable("livros_main") {
+                        LivroMainScreen(navController = navController)
+                    }
+
+                    composable("pesquisa") {
+                        LivroPesquisaScreen(navController = navController)
+                    }
+
+                    composable("insight") {
+                        LivroInsightScreen(navController = navController)
+                    }
+
+                    composable("professores") {
+                        LivroProfessoresScreen(navController = navController)
+                    }
+
+                    composable("recomendacoes_curso") {
+                        LivroRec2Screen(navController = navController)
+                    }
+
+                    composable("avaliacao") {
+                        LivroReviewScreen(navController = navController)
+                    }
+
+                    composable("professor_perfil") {
+                        ProfessorPerfilScreen(navController = navController)
+                    }
+
+                    // ← adicionado: rota detalhes apontando para LivroDetalhesScreen
+                    composable("detalhes") {
+                        LivroDetalhesScreen(navController = navController)
+                    }
+                }
+            }
+        }
+    }
+}

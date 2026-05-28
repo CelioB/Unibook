@@ -1,0 +1,254 @@
+package com.projeto.unibook1.telasgerais
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.Map
+import androidx.compose.material.icons.outlined.MenuBook
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.projeto.unibook1.R
+
+@Composable
+fun AcessoBiblioteca(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    onBackClick: () -> Unit
+) {
+    Scaffold(
+        bottomBar = {
+            BottomNavBar(
+                onInicioClick = { navController.navigate("tela_inicial") },
+                onMapaClick   = { navController.navigate("mapa") },
+                onLivrosClick = { navController.navigate("livros_main") },
+                onPerfilClick = { navController.navigate("perfil") }
+            )
+        }
+    ) { paddingValues ->
+
+        Column(
+            modifier = modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+                .background(Color(0xFFF6F6F9))
+                .verticalScroll(rememberScrollState())
+                .padding(14.dp)
+        ) {
+            Spacer(modifier = Modifier.height(24.dp))
+            Text(
+                text = "⬅️ Acesso à Biblioteca",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color(0xFF1976D2),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { onBackClick() }
+            )
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Meu Identificador",
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.headlineMedium
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(text = "Apresente esse código na entrada para liberar seu acesso.")
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.img),
+                        contentDescription = "QR CODE"
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Text(
+                        text = "🔵 CÓDIGO ATIVO",
+                        color = Color(0xFF1976D2),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            modifier = Modifier.size(60.dp),
+                            painter = painterResource(id = R.drawable.img_1),
+                            contentDescription = "Foto do aluno"
+                        )
+                        Spacer(modifier = Modifier.width(30.dp))
+                        Column {
+                            Text(
+                                text = "Lucas Silva",
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.headlineSmall
+                            )
+                            Text(
+                                text = "Estudante de Psicologia",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color(0xFF1976D2),
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "Matrícula",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.labelSmall,
+                            fontSize = 16.sp,
+                            color = Color.Gray
+                        )
+                        Text(
+                            text = "2510368",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                    }
+                }
+                Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "Validade",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.labelSmall,
+                            fontSize = 16.sp,
+                            color = Color.Gray
+                        )
+                        Text(
+                            text = "Dez 2026",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEEF1F5))
+            ) {
+                Row(modifier = Modifier.padding(16.dp)) {
+                    Text(text = "⚠️")
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Se o código não for lido corretamente, certifique-se de que o brilho da sua tela está no máximo e tente novamente.",
+                        color = Color(0xFF485569)
+                    )
+                }
+            }
+        }
+    }
+}
+
+// ✅ BottomNavBar implementada corretamente (sem TODO)
+@Composable
+fun BottomNavBar(
+    onInicioClick: () -> Unit,
+    onMapaClick: () -> Unit,
+    onLivrosClick: () -> Unit,
+    onPerfilClick: () -> Unit
+) {
+    NavigationBar(
+        containerColor = Color.White,
+        tonalElevation = 0.dp
+    ) {
+        NavigationBarItem(
+            selected = false,
+            onClick = onInicioClick,
+            icon = { Icon(Icons.Filled.Home, contentDescription = "Início") },
+            label = { Text("Início", fontSize = 11.sp) }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = onMapaClick,
+            icon = { Icon(Icons.Outlined.Map, contentDescription = "Mapa") },
+            label = { Text("Mapa", fontSize = 11.sp) }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = onLivrosClick,
+            icon = { Icon(Icons.Outlined.MenuBook, contentDescription = "Livros") },
+            label = { Text("Livros", fontSize = 11.sp) }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = onPerfilClick,
+            icon = { Icon(Icons.Outlined.Person, contentDescription = "Perfil") },
+            label = { Text("Perfil", fontSize = 11.sp) }
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AcessoBibliotecaPreview() {
+    AcessoBiblioteca(navController = rememberNavController(), onBackClick = {})
+}
