@@ -80,12 +80,15 @@ unibook/
 ├── app/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/unifor/unibook/
-│   │   │   │   ├── ui/                    # Activities e Fragments (telas)
-│   │   │   │   │   ├── auth/              # Login, Cadastro, Recuperação de senha
+│   │   │   ├── java/
+│   │   │   │   ├── com.projeto.unibook1/  # Activities e Fragments (telas)
+│   │   │   │   │   ├── usuario/           # Login, Cadastro, Recuperação de senha
+│   │   │   │   │   │   ├── cadastro/
+│   │   │   │   │   │   ├── inicio/
+│   │   │   │   │   │   ├── livro/
+│   │   │   │   │   │   ├── mapa/          # Mapa da biblioteca
 │   │   │   │   │   ├── home/              # Tela inicial, notificações
 │   │   │   │   │   ├── books/             # Busca, detalhes, reserva de livros
-│   │   │   │   │   ├── map/               # Mapa da biblioteca
 │   │   │   │   │   ├── profile/           # Perfil do usuário, histórico
 │   │   │   │   │   ├── admin/             # Painel administrativo
 │   │   │   │   │   └── ai/                # Azure Scholar — plano de estudos
