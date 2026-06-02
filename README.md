@@ -112,10 +112,7 @@ unibook/
 │   ├── casos-de-uso.md                    # Descrição dos casos de uso
 │   ├── diagrama-caso-uso.png              # Diagrama de caso de uso (Usuário e Admin)
 │   ├── diagrama-atividade.png             # Diagrama de atividade — fluxo principal
-│   └── benchmark.md                       # Análise comparativa com concorrentes
 │
-├── design/
-│   └── prototipo-figma.md                 # Link e instruções do protótipo no Figma
 │
 ├── .gitignore
 ├── build.gradle
@@ -175,12 +172,11 @@ O protótipo das interfaces do aluno e do administrador está disponível no Fig
 
 🔗 **[Acessar Protótipo no Figma](https://www.figma.com/board/kCUgvED7S5FGqebCgUqTbg/Prot%C3%B3tipo-de-Alta-Fidelidade---Narak)**
 
-O protótipo cobre os fluxos de:
+O protótipo cobre as telas protótipo de:
 - Onboarding e autenticação
 - Tela inicial e navegação geral
 - Busca, filtros e detalhes de livros
 - Reserva e acompanhamento de empréstimos
-- Mapa interativo e localização de exemplares
 ---
 
 ## 👤 Atores do Sistema
