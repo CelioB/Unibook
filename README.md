@@ -132,6 +132,15 @@ Antes de começar, certifique-se de ter instalado:
 - JDK 17+
 - Android SDK com API Level 26 ou superior
 - Dispositivo físico ou emulador Android configurado
+-  - Mais detalhes: Android Studio Panda 4 | 2025.3.4
+Build #AI-253.32098.37.2534.15232325, built on April 17, 2026
+Runtime version: 21.0.10+-14961533-b1163.108 amd64
+VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
+Toolkit: sun.awt.windows.WToolkit
+Windows 11.0
+  ide.instant.shutdown=false
+  ide.experimental.ui=true
+
 
 ### Passo a passo
 
@@ -151,7 +160,7 @@ Aguarde o Android Studio sincronizar automaticamente o Gradle. Se necessário, c
 
 **4. Configure as variáveis de ambiente**
 
-Crie um arquivo `local.properties` na raiz com as seguintes chaves:
+Caso seja adm, crie um arquivo `local.properties` na raiz com as seguintes chaves:
 ```properties
 # URL base da API da biblioteca
 API_BASE_URL=https://api.biblioteca.unifor.br/
@@ -212,7 +221,7 @@ O protótipo cobre as telas protótipo de:
 
 ---
 
-## 📋 Metodologia de Desenvolvimento
+## Metodologia de Desenvolvimento
 
 O projeto foi desenvolvido com a metodologia **Scrum**, seguindo ciclos iterativos de Sprints:
 
@@ -224,7 +233,7 @@ Referência: SCHWABER, Ken; SUTHERLAND, Jeff. *The Scrum Guide*. Scrum.org, 2020
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto foi desenvolvido para fins acadêmicos na Universidade de Fortaleza (Unifor) como parte da disciplina de **Desenvolvimento de Plataformas Móveis**. Todos os direitos reservados aos autores.
 
