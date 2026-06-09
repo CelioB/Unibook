@@ -122,7 +122,7 @@ unibook/
 
 ---
 
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### Pré-requisitos
 
@@ -138,8 +138,8 @@ Runtime version: 21.0.10+-14961533-b1163.108 amd64
 VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
 Toolkit: sun.awt.windows.WToolkit
 Windows 11.0
-  ide.instant.shutdown=false
-  ide.experimental.ui=true
+ | ide.instant.shutdown=false
+ | ide.experimental.ui=true
 
 
 ### Passo a passo
@@ -158,18 +158,7 @@ Vá em `File → Open` e selecione a pasta raiz do projeto.
 
 Aguarde o Android Studio sincronizar automaticamente o Gradle. Se necessário, clique em **"Sync Project with Gradle Files"**.
 
-**4. Configure as variáveis de ambiente**
-
-Caso seja adm, crie um arquivo `local.properties` na raiz com as seguintes chaves:
-```properties
-# URL base da API da biblioteca
-API_BASE_URL=https://api.biblioteca.unifor.br/
-
-# Chave de integração com o SUAP
-SUAP_API_KEY=sua_chave_aqui
-```
-
-**5. Execute o aplicativo**
+**4. Execute o aplicativo**
 
 Selecione o dispositivo/emulador no menu superior e clique em **Run ▶** ou pressione `Shift + F10`.
 
@@ -188,7 +177,7 @@ O protótipo cobre as telas protótipo de:
 - Reserva e acompanhamento de empréstimos
 ---
 
-## 👤 Atores do Sistema
+## Atores do Sistema
 
 | Ator | Descrição |
 |---|---|
@@ -198,7 +187,7 @@ O protótipo cobre as telas protótipo de:
 
 ---
 
-## ✅ Principais Requisitos Implementados
+##  Principais Requisitos Implementados
 
 ### Funcionais
 | Código | Descrição | Prioridade |
