@@ -72,56 +72,6 @@ O sistema atual da biblioteca apresenta plataformas fragmentadas, instáveis e s
 
 ---
 
-## Estrutura do Repositório
-
-```
-unibook/
-│
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   ├── com.projeto.unibook1/  # Activities e Fragments (telas)
-│   │   │   │   │   ├── usuario/           # Login, Cadastro, Recuperação de senha
-│   │   │   │   │   │   ├── cadastro/
-│   │   │   │   │   │   ├── inicio/
-│   │   │   │   │   │   ├── livro/
-│   │   │   │   │   │   ├── mapa/          # Mapa da biblioteca
-│   │   │   │   │   ├── home/              # Tela inicial, notificações
-│   │   │   │   │   ├── books/             # Busca, detalhes, reserva de livros
-│   │   │   │   │   ├── profile/           # Perfil do usuário, histórico
-│   │   │   │   │   ├── admin/             # Painel administrativo
-│   │   │   │   │   └── ai/                # Azure Scholar — plano de estudos
-│   │   │   │   ├── data/                  # Repositórios e fontes de dados
-│   │   │   │   │   ├── model/             # Data classes (Livro, Empréstimo, etc.)
-│   │   │   │   │   ├── repository/        # Camada de acesso a dados
-│   │   │   │   │   └── remote/            # Chamadas de API (Retrofit)
-│   │   │   │   ├── domain/                # Regras de negócio / Use Cases
-│   │   │   │   └── utils/                 # Funções utilitárias e extensões
-│   │   │   ├── res/
-│   │   │   │   ├── layout/                # Arquivos XML de interface
-│   │   │   │   ├── drawable/              # Ícones e imagens
-│   │   │   │   ├── values/                # Cores, strings, temas
-│   │   │   │   └── navigation/            # Grafo de navegação
-│   │   │   └── AndroidManifest.xml
-│   │   └── test/                          # Testes unitários
-│   └── build.gradle
-│
-├── docs/
-│   ├── requisitos.md                      # Lista completa de requisitos RF e RNF
-│   ├── casos-de-uso.md                    # Descrição dos casos de uso
-│   ├── diagrama-caso-uso.png              # Diagrama de caso de uso (Usuário e Admin)
-│   ├── diagrama-atividade.png             # Diagrama de atividade — fluxo principal
-│
-│
-├── .gitignore
-├── build.gradle
-├── settings.gradle
-└── README.md
-```
-
----
-
 ## Como Executar o Projeto
 
 ### Pré-requisitos
