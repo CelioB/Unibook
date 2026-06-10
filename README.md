@@ -72,57 +72,7 @@ O sistema atual da biblioteca apresenta plataformas fragmentadas, instáveis e s
 
 ---
 
-## Estrutura do Repositório
-
-```
-unibook/
-│
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   ├── com.projeto.unibook1/  # Activities e Fragments (telas)
-│   │   │   │   │   ├── usuario/           # Login, Cadastro, Recuperação de senha
-│   │   │   │   │   │   ├── cadastro/
-│   │   │   │   │   │   ├── inicio/
-│   │   │   │   │   │   ├── livro/
-│   │   │   │   │   │   ├── mapa/          # Mapa da biblioteca
-│   │   │   │   │   ├── home/              # Tela inicial, notificações
-│   │   │   │   │   ├── books/             # Busca, detalhes, reserva de livros
-│   │   │   │   │   ├── profile/           # Perfil do usuário, histórico
-│   │   │   │   │   ├── admin/             # Painel administrativo
-│   │   │   │   │   └── ai/                # Azure Scholar — plano de estudos
-│   │   │   │   ├── data/                  # Repositórios e fontes de dados
-│   │   │   │   │   ├── model/             # Data classes (Livro, Empréstimo, etc.)
-│   │   │   │   │   ├── repository/        # Camada de acesso a dados
-│   │   │   │   │   └── remote/            # Chamadas de API (Retrofit)
-│   │   │   │   ├── domain/                # Regras de negócio / Use Cases
-│   │   │   │   └── utils/                 # Funções utilitárias e extensões
-│   │   │   ├── res/
-│   │   │   │   ├── layout/                # Arquivos XML de interface
-│   │   │   │   ├── drawable/              # Ícones e imagens
-│   │   │   │   ├── values/                # Cores, strings, temas
-│   │   │   │   └── navigation/            # Grafo de navegação
-│   │   │   └── AndroidManifest.xml
-│   │   └── test/                          # Testes unitários
-│   └── build.gradle
-│
-├── docs/
-│   ├── requisitos.md                      # Lista completa de requisitos RF e RNF
-│   ├── casos-de-uso.md                    # Descrição dos casos de uso
-│   ├── diagrama-caso-uso.png              # Diagrama de caso de uso (Usuário e Admin)
-│   ├── diagrama-atividade.png             # Diagrama de atividade — fluxo principal
-│
-│
-├── .gitignore
-├── build.gradle
-├── settings.gradle
-└── README.md
-```
-
----
-
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### Pré-requisitos
 
@@ -132,6 +82,15 @@ Antes de começar, certifique-se de ter instalado:
 - JDK 17+
 - Android SDK com API Level 26 ou superior
 - Dispositivo físico ou emulador Android configurado
+-  - Mais detalhes: Android Studio Panda 4 | 2025.3.4
+Build #AI-253.32098.37.2534.15232325, built on April 17, 2026
+Runtime version: 21.0.10+-14961533-b1163.108 amd64
+VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
+Toolkit: sun.awt.windows.WToolkit
+Windows 11.0
+ | ide.instant.shutdown=false
+ | ide.experimental.ui=true
+
 
 ### Passo a passo
 
@@ -149,18 +108,7 @@ Vá em `File → Open` e selecione a pasta raiz do projeto.
 
 Aguarde o Android Studio sincronizar automaticamente o Gradle. Se necessário, clique em **"Sync Project with Gradle Files"**.
 
-**4. Configure as variáveis de ambiente**
-
-Crie um arquivo `local.properties` na raiz com as seguintes chaves:
-```properties
-# URL base da API da biblioteca
-API_BASE_URL=https://api.biblioteca.unifor.br/
-
-# Chave de integração com o SUAP
-SUAP_API_KEY=sua_chave_aqui
-```
-
-**5. Execute o aplicativo**
+**4. Execute o aplicativo**
 
 Selecione o dispositivo/emulador no menu superior e clique em **Run ▶** ou pressione `Shift + F10`.
 
@@ -179,7 +127,7 @@ O protótipo cobre as telas protótipo de:
 - Reserva e acompanhamento de empréstimos
 ---
 
-## 👤 Atores do Sistema
+## Atores do Sistema
 
 | Ator | Descrição |
 |---|---|
@@ -189,7 +137,7 @@ O protótipo cobre as telas protótipo de:
 
 ---
 
-## ✅ Principais Requisitos Implementados
+##  Principais Requisitos Implementados
 
 ### Funcionais
 | Código | Descrição | Prioridade |
@@ -212,7 +160,7 @@ O protótipo cobre as telas protótipo de:
 
 ---
 
-## 📋 Metodologia de Desenvolvimento
+## Metodologia de Desenvolvimento
 
 O projeto foi desenvolvido com a metodologia **Scrum**, seguindo ciclos iterativos de Sprints:
 
@@ -224,7 +172,7 @@ Referência: SCHWABER, Ken; SUTHERLAND, Jeff. *The Scrum Guide*. Scrum.org, 2020
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto foi desenvolvido para fins acadêmicos na Universidade de Fortaleza (Unifor) como parte da disciplina de **Desenvolvimento de Plataformas Móveis**. Todos os direitos reservados aos autores.
 
