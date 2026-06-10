@@ -20,8 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projeto.unibook1.ui.StandardBottomContainer
+import com.projeto.unibook1.ui.StandardNavBarItem
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.automirrored.outlined.LibraryBooks
+import androidx.compose.material.icons.outlined.People
 
-val RoxoForte = Color(0xFF7B2CBF) // Cor primária do design
+val RoxoForte = Color(0xFF2F2C79) // Cor primária do design
 
 data class LivroMock(val titulo: String, val autor: String)
 
@@ -48,19 +53,15 @@ fun AdminLivros(
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFFF4F6F9)),
                 title = {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.MenuBook, contentDescription = null, tint = RoxoForte)
-                        Spacer(modifier = Modifier.width(8.dp))
+                    Column {
+                        Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "COLEÇÃO DE LIVROS",
-                            style = MaterialTheme.typography.titleMedium,
+                            text = "Unibook",
+                            style = MaterialTheme.typography.headlineMedium,
                             color = RoxoForte,
-                            fontWeight = FontWeight.Black
+                            fontWeight = FontWeight.Bold
                         )
                     }
-                },
-                actions = {
-
                 }
             )
         },
@@ -162,27 +163,6 @@ fun CardLivro(livro: LivroMock, onClick: () -> Unit) {
     }
 }
 
-
-@Composable
-fun NavItem(nome: String, icone: androidx.compose.ui.graphics.vector.ImageVector, isActive: Boolean, onClick: () -> Unit) {
-    val backgroundColor = if (isActive) Color(0xFFF3E5F5) else Color.Transparent
-    val contentColor = if (isActive) RoxoForte else Color.Gray
-
-    Row(
-        modifier = Modifier
-            .clip(CircleShape)
-            .background(backgroundColor)
-            .clickable { onClick() }
-            .padding(horizontal = 16.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(icone, contentDescription = nome, tint = contentColor, modifier = Modifier.size(20.dp))
-        if (isActive) {
-            Spacer(modifier = Modifier.width(6.dp))
-            Text(text = nome, color = contentColor, fontWeight = FontWeight.Bold, fontSize = 10.sp)
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable

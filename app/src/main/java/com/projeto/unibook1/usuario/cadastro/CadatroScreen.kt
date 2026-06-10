@@ -37,8 +37,20 @@ fun CadastroScreen(
     onNavigateToSuporte: () -> Unit,
     emailsJaCadastrados: List<String> = emptyList()
 ) {
-    val auth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    val auth = remember {
+        try {
+            FirebaseAuth.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
+    val db = remember {
+        try {
+            FirebaseFirestore.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
 
     // Variáveis que guardam o que o usuário digita em cada campo
     // Toda vez que o valor muda, a tela é redesenhada automaticamente
@@ -80,8 +92,15 @@ fun CadastroScreen(
     fun realizarCadastro() {
         if (!validar()) return
 
+        val currentAuth = auth
+        val currentDb = db
+        if (currentAuth == null || currentDb == null) {
+            mensagemErro = "Erro: Firebase não inicializado"
+            return
+        }
+
         carregando = true
-        auth.createUserWithEmailAndPassword(email, senha)
+        currentAuth.createUserWithEmailAndPassword(email, senha)
             .addOnSuccessListener { result ->
                 val userId = result.user?.uid
                 if (userId != null) {
@@ -90,7 +109,7 @@ fun CadastroScreen(
                         "matricula" to matricula,
                         "email" to email
                     )
-                    db.collection("usuarios").document(userId)
+                    currentDb.collection("usuarios").document(userId)
                         .set(userData)
                         .addOnSuccessListener {
                             carregando = false

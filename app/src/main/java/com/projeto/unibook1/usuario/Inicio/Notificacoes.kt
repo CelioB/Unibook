@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Map
@@ -25,10 +26,37 @@ import androidx.navigation.compose.rememberNavController
 private val Blue      = Color(0xFF2196F3)
 private val LightBlue = Color(0xFFEFF6FF)
 private val CardBg    = Color(0xFFFFFFFF)
+private val AzureBlue = Color(0xFF1A73E8)
+private val DividerColor = Color(0xFFE0E0E0)
 
 @Composable
 fun NotificacoesScreen(navController: NavController) {
     Scaffold(
+        topBar = {
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Voltar",
+                            tint = AzureBlue
+                        )
+                    }
+                    Text(
+                        text = "Notificações",
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = AzureBlue
+                    )
+                }
+                HorizontalDivider(thickness = 1.dp, color = DividerColor)
+            }
+        },
         bottomBar = {
             NavigationBar(containerColor = CardBg, tonalElevation = 0.dp) {
                 NavigationBarItem(
@@ -66,14 +94,6 @@ fun NotificacoesScreen(navController: NavController) {
                 .padding(14.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = "⬅️ Notificações",
-                style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF1976D2),
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { navController.popBackStack() }
-            )
-
             Spacer(modifier = Modifier.height(24.dp))
             Text(text = "HOJE", color = Color(0xFF485569), fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(16.dp))

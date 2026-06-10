@@ -29,7 +29,7 @@ fun AdminEditarLivroScreen(
     onNavigateToLivros: () -> Unit
 ) {
     // Cores do layout
-    val roxoPrincipal = Color(0xFF7B2CBF)
+    val roxoPrincipal = Color(0xFF2F2C79)
     val fundoClaro = Color(0xFFF4F6F9)
     val corInput = Color(0xFFEef1f5)
     val cinzaTexto = Color(0xFF6B7280)

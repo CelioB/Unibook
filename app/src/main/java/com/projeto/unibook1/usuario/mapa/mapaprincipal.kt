@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.navigation.NavController
+import com.projeto.unibook1.ui.StandardBottomContainer
+import com.projeto.unibook1.ui.StandardNavBarItem
 import androidx.navigation.compose.rememberNavController
 
 private val Blue      = Color(0xFF2196F3)
@@ -40,35 +42,34 @@ fun MapScreen(
 
     Scaffold(
         bottomBar = {
-            NavigationBar(containerColor = CardBg, tonalElevation = 0.dp) {
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate("tela_inicial") },
-                    icon = { Icon(Icons.Outlined.Home, contentDescription = "Início") },
-                    label = { Text("Início", fontSize = 11.sp) }
+            StandardBottomContainer {
+                StandardNavBarItem(
+                    label = "Início",
+                    icon = Icons.Outlined.Home,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = { navController.navigate("tela_inicial") }
                 )
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { /* já estamos no mapa */ },
-                    icon = { Icon(Icons.Filled.Map, contentDescription = "Mapa") },
-                    label = { Text("Mapa", fontSize = 11.sp) },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Blue,
-                        selectedTextColor = Blue,
-                        indicatorColor = LightBlue
-                    )
+                StandardNavBarItem(
+                    label = "Mapa",
+                    icon = Icons.Filled.Map,
+                    isSelected = true,
+                    selectedColor = Blue,
+                    onClick = { /* já estamos no mapa */ }
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate("livros_main") },
-                    icon = { Icon(Icons.Outlined.MenuBook, contentDescription = "Livros") },
-                    label = { Text("Livros", fontSize = 11.sp) }
+                StandardNavBarItem(
+                    label = "Livros",
+                    icon = Icons.Outlined.MenuBook,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = { navController.navigate("livros_main") }
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { navController.navigate("perfil") },
-                    icon = { Icon(Icons.Outlined.Person, contentDescription = "Perfil") },
-                    label = { Text("Perfil", fontSize = 11.sp) }
+                StandardNavBarItem(
+                    label = "Perfil",
+                    icon = Icons.Outlined.Person,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = { navController.navigate("perfil") }
                 )
             }
         }
@@ -80,18 +81,22 @@ fun MapScreen(
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
         ) {
+            Spacer(modifier = Modifier.height(24.dp))
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Unifriends",
+                    text = "Unibook",
                     style = MaterialTheme.typography.headlineMedium,
                     color = Color(0xFF1976D2),
                     fontWeight = FontWeight.Bold,
                 )
             }
+            Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
                 value = "",

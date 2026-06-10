@@ -21,7 +21,13 @@ fun RecuperarSenhaScreen(
     onVoltarLogin: () -> Unit,
     onContinuar: () -> Unit
 ) {
-    val auth = FirebaseAuth.getInstance()
+    val auth = remember {
+        try {
+            FirebaseAuth.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
     var email by remember { mutableStateOf("") }
     var mensagem by remember { mutableStateOf<String?>(null) }
     var isLoading by remember { mutableStateOf(false) }
@@ -36,10 +42,16 @@ fun RecuperarSenhaScreen(
             return
         }
 
+        val currentAuth = auth
+        if (currentAuth == null) {
+            mensagem = "Erro: Firebase não inicializado."
+            return
+        }
+
         isLoading = true
         mensagem = null
 
-        auth.sendPasswordResetEmail(email)
+        currentAuth.sendPasswordResetEmail(email)
             .addOnSuccessListener {
                 isLoading = false
                 mensagem = "Instruções enviadas para seu e-mail!"

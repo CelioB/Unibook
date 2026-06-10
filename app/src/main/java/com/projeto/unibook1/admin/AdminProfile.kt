@@ -34,9 +34,9 @@ fun ProfileScreen(
     onChangeProfilePictureClick: () -> Unit
 ) {
     // Cores baseadas na imagem
-    val backgroundColor = Color(0xFFF7F8FB)
-    val primaryPurple = Color(0xFF8B5CF6)
-    val lightPurpleBg = Color(0xFFF3EDFF)
+    val backgroundColor = Color(0xFFF4F6F9)
+    val primaryPurple = Color(0xFF2F2C79)
+    val lightPurpleBg = Color(0xFFE8F0FE)
     val textColorDark = Color(0xFF333333)
     val textColorGray = Color(0xFF888888)
 

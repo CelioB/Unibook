@@ -8,11 +8,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
+import com.projeto.unibook1.ui.StandardBottomContainer
+import com.projeto.unibook1.ui.StandardNavBarItem
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.MenuBook
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -42,9 +47,21 @@ fun TelaInicial(
     onNotificacoesClick: () -> Unit,
     onRenovarClick: () -> Unit
 ) {
-    val auth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
-    val currentUser = auth.currentUser
+    val auth = remember {
+        try {
+            FirebaseAuth.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
+    val db = remember {
+        try {
+            FirebaseFirestore.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
+    val currentUser = auth?.currentUser
 
     var nomeAluno by remember { mutableStateOf("...") }
     var livrosAtivos by remember { mutableStateOf("0") }
@@ -52,8 +69,8 @@ fun TelaInicial(
 
     LaunchedEffect(currentUser) {
         currentUser?.let { user ->
-            db.collection("usuarios").document(user.uid).get()
-                .addOnSuccessListener { document ->
+            db?.collection("usuarios")?.document(user.uid)?.get()
+                ?.addOnSuccessListener { document ->
                     nomeAluno = document.getString("nomeCompleto")?.split(" ")?.firstOrNull() ?: "Aluno"
                 }
         }
@@ -61,35 +78,34 @@ fun TelaInicial(
 
     Scaffold(
         bottomBar = {
-            NavigationBar(containerColor = CardBg, tonalElevation = 0.dp) {
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { /* já estamos no início */ },
-                    icon = { Icon(Icons.Filled.Home, contentDescription = "Início") },
-                    label = { Text("Início", fontSize = 11.sp) },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Blue,
-                        selectedTextColor = Blue,
-                        indicatorColor = LightBlue
-                    )
+            StandardBottomContainer {
+                StandardNavBarItem(
+                    label = "Início",
+                    icon = Icons.Filled.Home,
+                    isSelected = true,
+                    selectedColor = Blue,
+                    onClick = { /* já estamos no início */ }
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = onMapaClick,
-                    icon = { Icon(Icons.Outlined.Map, contentDescription = "Mapa") },
-                    label = { Text("Mapa", fontSize = 11.sp) }
+                StandardNavBarItem(
+                    label = "Mapa",
+                    icon = Icons.Outlined.Map,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = onMapaClick
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = onLivrosClick,
-                    icon = { Icon(Icons.Outlined.MenuBook, contentDescription = "Livros") },
-                    label = { Text("Livros", fontSize = 11.sp) }
+                StandardNavBarItem(
+                    label = "Livros",
+                    icon = Icons.Outlined.MenuBook,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = onLivrosClick
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = onPerfilClick,
-                    icon = { Icon(Icons.Outlined.Person, contentDescription = "Perfil") },
-                    label = { Text("Perfil", fontSize = 11.sp) }
+                StandardNavBarItem(
+                    label = "Perfil",
+                    icon = Icons.Outlined.Person,
+                    isSelected = false,
+                    selectedColor = Blue,
+                    onClick = onPerfilClick
                 )
             }
         }
@@ -102,14 +118,14 @@ fun TelaInicial(
                 .padding(14.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(32.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Unifriend",
+                    text = "Unibook",
                     style = MaterialTheme.typography.headlineLarge,
                     color = Color(0xFF1976D2),
                     fontWeight = FontWeight.Bold

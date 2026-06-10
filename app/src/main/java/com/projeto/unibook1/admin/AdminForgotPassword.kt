@@ -31,8 +31,9 @@ fun RecuperarSenhaScreen(
 ) {
     var email by remember { mutableStateOf("") }
 
-    val roxoPrincipal = Color(0xFFA056F3)
-    val fundoClaro = Color(0xFFF4F0FA)
+    val adminDarkBlue = Color(0xFF2F2C79)
+    val adminBluePrimary = Color(0xFF2196F3)
+    val fundoClaro = Color(0xFFF4F6F9)
     val cinzaTexto = Color(0xFF666666)
     val fundoInput = Color(0xFFF5F5F5)
 
@@ -42,19 +43,19 @@ fun RecuperarSenhaScreen(
                 title = {
                     Text(
                         text = "BIBLIOTECA",
-                        color = roxoPrincipal,
+                        color = adminBluePrimary,
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 2.sp
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = {  }) {
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu", tint = roxoPrincipal)
+                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu", tint = adminBluePrimary)
                     }
                 },
                 actions = {
                     IconButton(onClick = {  }) {
-                        Icon(imageVector = Icons.Outlined.Info, contentDescription = "Info", tint = roxoPrincipal)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = "Info", tint = adminBluePrimary)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
@@ -116,13 +117,13 @@ fun RecuperarSenhaScreen(
                     Box(
                         modifier = Modifier
                             .size(70.dp)
-                            .background(color = roxoPrincipal.copy(alpha = 0.6f), shape = CircleShape),
+                            .background(color = adminDarkBlue.copy(alpha = 0.1f), shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Default.LockReset,
                             contentDescription = "Recuperar",
-                            tint = roxoPrincipal,
+                            tint = adminDarkBlue,
                             modifier = Modifier.size(36.dp)
                         )
                     }
@@ -187,7 +188,7 @@ fun RecuperarSenhaScreen(
                             .fillMaxWidth()
                             .height(50.dp),
                         shape = RoundedCornerShape(25.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = roxoPrincipal)
+                        colors = ButtonDefaults.buttonColors(containerColor = adminDarkBlue)
                     ) {
                         Text("ENVIAR", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color.White)
                     }

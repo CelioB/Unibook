@@ -31,13 +31,13 @@ fun AdminScannerScreen(
                 title = { Text("Câmera do Scanner", fontWeight = FontWeight.Bold, fontSize = 18.sp) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar", tint = Color(0xFF7B2CBF))
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar", tint = Color(0xFF2F2C79))
                     }
                 },
                 actions = {
                     // 👇 Botão na direita com a seta que leva para a tela do aluno
                     IconButton(onClick = onScanSuccess) {
-                        Icon(Icons.Default.ArrowForward, contentDescription = "Simular Leitura QR", tint = Color(0xFF7B2CBF))
+                        Icon(Icons.Default.ArrowForward, contentDescription = "Simular Leitura QR", tint = Color(0xFF2F2C79))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
@@ -69,7 +69,7 @@ fun AdminScannerScreen(
             Box(
                 modifier = Modifier
                     .size(250.dp)
-                    .border(4.dp, Color(0xFF7B2CBF), RoundedCornerShape(24.dp)),
+                    .border(4.dp, Color(0xFF2F2C79), RoundedCornerShape(24.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Text("Câmera Mockada 🎥", color = Color.Gray) // 👈 Feedback visual

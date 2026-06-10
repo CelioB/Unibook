@@ -24,7 +24,8 @@ fun AdminAdicionarLivroScreen(
     onNavigateToEmprestimos: () -> Unit,
     onNavigateToLivros: () -> Unit
 ) {
-    val rPrincipal = Color(0xFF7B2CBF)
+    val AdminDarkBlue = Color(0xFF2F2C79)
+    val AdminBluePrimary = Color(0xFF2196F3)
     val cinzaSuave = Color(0xFFF4F6F9)
 
     Scaffold(
@@ -38,7 +39,7 @@ fun AdminAdicionarLivroScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text("Adicionar Livro", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                        Text("LIB", color = rPrincipal, fontWeight = FontWeight.Black)
+                        Text("LIB", color = AdminDarkBlue, fontWeight = FontWeight.Black)
                     }
                 },
                 navigationIcon = {
@@ -102,9 +103,9 @@ fun AdminAdicionarLivroScreen(
             Column(Modifier.fillMaxWidth()) {
                 Text("QUANTIDADE DE EXEMPLARES DISPONÍVEIS", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.Gray)
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 8.dp)) {
-                    IconButton(onClick = {}) { Icon(Icons.Default.RemoveCircleOutline, contentDescription = null, tint = rPrincipal) }
+                    IconButton(onClick = {}) { Icon(Icons.Default.RemoveCircleOutline, contentDescription = null, tint = AdminDarkBlue) }
                     Text("1", fontWeight = FontWeight.Bold, fontSize = 18.sp, modifier = Modifier.padding(horizontal = 16.dp))
-                    IconButton(onClick = {}) { Icon(Icons.Default.AddCircleOutline, contentDescription = null, tint = rPrincipal) }
+                    IconButton(onClick = {}) { Icon(Icons.Default.AddCircleOutline, contentDescription = null, tint = AdminDarkBlue) }
                 }
             }
 
@@ -114,7 +115,7 @@ fun AdminAdicionarLivroScreen(
             Button(
                 onClick = { },
                 modifier = Modifier.fillMaxWidth().height(55.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = rPrincipal),
+                colors = ButtonDefaults.buttonColors(containerColor = AdminDarkBlue),
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Icon(Icons.Default.Check, contentDescription = null)

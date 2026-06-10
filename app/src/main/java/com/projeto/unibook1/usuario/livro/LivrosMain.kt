@@ -158,8 +158,7 @@ fun TopAppBarSection() {
     ) {
         Spacer(Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = "Uni", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AzureBlue, lineHeight = 22.sp)
-            Text(text = "Book", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AzureBlue, lineHeight = 22.sp)
+            Text(text = "Unibook", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = AzureBlue, lineHeight = 22.sp)
         }
     }
 }

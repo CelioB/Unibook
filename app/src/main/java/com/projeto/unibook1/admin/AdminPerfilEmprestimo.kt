@@ -287,7 +287,7 @@ fun AdminPerfilEmprestimo(onBack: () -> Unit) {
                         .fillMaxSize()
                         .background(
                             Brush.horizontalGradient(
-                                listOf(Color(0xFF7B2FF7), Color(0xFF9A4DFF))
+                                listOf(Color(0xFF2F2C79), Color(0xFF4A46B1))
                             ),
                             shape = RoundedCornerShape(50)
                         ),

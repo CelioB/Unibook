@@ -29,8 +29,8 @@ fun AdminDetalhesSolicitacaoScreen(
     onNavigateToEmprestimos: () -> Unit,
     onNavigateToLivros: () -> Unit
 ) {
-    val corPrimaria = Color(0xFF8A2BE2)
-    val corFundo = Color(0xFFF4F5FA)
+    val corPrimaria = Color(0xFF2F2C79)
+    val corFundo = Color(0xFFF4F6F9)
     val corVerde = Color(0xFF10B981)
     val corVermelha = Color(0xFFF43F5E)
     val corAmarela = Color(0xFFFEF3C7)

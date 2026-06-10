@@ -10,6 +10,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PhotoCamera
+import androidx.compose.material.icons.automirrored.outlined.LibraryBooks
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.People
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,11 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projeto.unibook1.ui.StandardBottomContainer
+import com.projeto.unibook1.ui.StandardNavBarItem
 
 // Cores baseadas no seu design
 val FundoApp = Color(0xFFF4F6F9)
-val RoxoPrincipal = Color(0xFF7B2CBF)
-val RoxoClaro = Color(0xFFE9D8FD)
+val AdminDarkBlue = Color(0xFF2F2C79)
+val AdminBluePrimary = Color(0xFF2196F3)
+val AdminBlueLight = Color(0xFFE8F0FE)
 val TextoCinza = Color(0xFF6B7280)
 
 @Composable
@@ -131,7 +138,7 @@ fun TopBarAdmin(
 
         Text(
             text = nomeAdmin.uppercase(),
-            color = RoxoPrincipal,
+            color = AdminDarkBlue,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 20.sp,
             letterSpacing = 2.sp
@@ -157,10 +164,15 @@ fun ScannerCard(onOpenScannerClick: () -> Unit) {
                 modifier = Modifier
                     .size(80.dp)
                     .clip(CircleShape)
-                    .background(RoxoClaro),
+                    .background(AdminBlueLight),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "🔳", fontSize = 32.sp)
+                Icon(
+                    imageVector = Icons.Default.PhotoCamera,
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp),
+                    tint = AdminDarkBlue
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -186,7 +198,7 @@ fun ScannerCard(onOpenScannerClick: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = RoxoPrincipal),
+                colors = ButtonDefaults.buttonColors(containerColor = AdminDarkBlue),
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(text = "Open Scanner", fontSize = 16.sp, fontWeight = FontWeight.Bold)
@@ -214,10 +226,15 @@ fun StudentItemCard(nome: String, matricula: String, onClick: () -> Unit) {
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
-                    .background(RoxoClaro),
+                    .background(AdminBlueLight),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "🎓", fontSize = 24.sp)
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp),
+                    tint = AdminDarkBlue
+                )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -253,7 +270,6 @@ fun StudentItemCard(nome: String, matricula: String, onClick: () -> Unit) {
     }
 }
 
-// 👇 4. Atualizei a sua NavBar para reagir aos cliques e mostrar a cor certa
 @Composable
 fun AdminBottomNavBar(
     currentRoute: String,
@@ -261,79 +277,45 @@ fun AdminBottomNavBar(
     onNavigateToEmprestimos: () -> Unit,
     onNavigateToLivros: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .background(Color.White, shape = RoundedCornerShape(32.dp))
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Item Início
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .clickable { onNavigateToHome() }
-                    .background(
-                        if (currentRoute == "admin_home") FundoApp else Color.Transparent,
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
-            ) {
-                Text(text = "🏠", fontSize = 20.sp)
-                Text(
-                    text = "INÍCIO",
-                    color = if (currentRoute == "admin_home") RoxoPrincipal else TextoCinza,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            // Item Empréstimos
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .clickable { onNavigateToEmprestimos() }
-                    .background(
-                        if (currentRoute == "admin_emprestimos") FundoApp else Color.Transparent,
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
-            ) {
-                Text(text = "📖", fontSize = 20.sp)
-                Text(
-                    text = "EMPRÉSTIMOS",
-                    color = if (currentRoute == "admin_emprestimos") RoxoPrincipal else TextoCinza,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            // Item Livros
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .clickable { onNavigateToLivros() }
-                    .background(
-                        if (currentRoute == "admin_livros") FundoApp else Color.Transparent,
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
-            ) {
-                Text(text = "👥", fontSize = 20.sp)
-                Text(
-                    text = "LIVROS",
-                    color = if (currentRoute == "admin_livros") RoxoPrincipal else TextoCinza,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-        }
+    StandardBottomContainer {
+        StandardNavBarItem(
+            label = "Início",
+            icon = Icons.Outlined.Home,
+            isSelected = currentRoute == "admin_home",
+            selectedColor = AdminBluePrimary,
+            onClick = onNavigateToHome
+        )
+        StandardNavBarItem(
+            label = "Empréstimos",
+            icon = Icons.AutoMirrored.Outlined.LibraryBooks,
+            isSelected = currentRoute == "admin_emprestimos",
+            selectedColor = AdminBluePrimary,
+            onClick = onNavigateToEmprestimos
+        )
+        StandardNavBarItem(
+            label = "Livros",
+            icon = Icons.Outlined.People,
+            isSelected = currentRoute == "admin_livros",
+            selectedColor = AdminBluePrimary,
+            onClick = onNavigateToLivros
+        )
     }
+}
+
+@Composable
+private fun NavBarItem(
+    label: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    StandardNavBarItem(
+        label = label,
+        icon = icon,
+        isSelected = isSelected,
+        selectedColor = AdminBluePrimary,
+        onClick = onClick
+    )
 }
 
 @Preview(showBackground = true)

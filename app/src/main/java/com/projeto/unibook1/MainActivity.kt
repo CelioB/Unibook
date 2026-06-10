@@ -89,9 +89,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = "selecao"
                 ) {
 
-                    // ══════════════════════════════════════════
                     // SELEÇÃO (PONTO DE ENTRADA)
-                    // ══════════════════════════════════════════
 
                     composable("selecao") {
                         SelecaoScreen(
@@ -100,9 +98,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // ADMIN - LOGIN E CADASTRO
-                    // ══════════════════════════════════════════
 
                     composable("login_admin") {
                         AdminLoginScreen(
@@ -152,10 +148,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // ADMIN - TELAS PRINCIPAIS
-                    // ══════════════════════════════════════════
-
                     composable("admin_home") {
                         AdminMainScreen(
                             onProfileClick      = { navController.navigate("admin_profile") },
@@ -220,10 +213,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // ADMIN - GESTÃO DE EMPRÉSTIMOS
-                    // ══════════════════════════════════════════
-
                     composable("admin_gestao_emprestimos") {
                         AdminGestaoEmprestimos(
                             onNavigateToSolicitacoes = { navController.navigate("admin_emprestimos") },
@@ -306,10 +296,7 @@ class MainActivity : ComponentActivity() {
                         AdminPerfilBloqueado(onBack = { navController.popBackStack() })
                     }
 
-                    // ══════════════════════════════════════════
                     // MAPA E ARMÁRIO
-                    // ══════════════════════════════════════════
-
                     composable("mapa") {
                         MapScreen(
                             navController  = navController,
@@ -336,10 +323,7 @@ class MainActivity : ComponentActivity() {
                         TelaReservaArmario()
                     }
 
-                    // ══════════════════════════════════════════
                     // ALUNO - LOGIN E CADASTRO
-                    // ══════════════════════════════════════════
-
                     composable("login_aluno") {
                         LoginAlunoScreen(
                             onNavigateToCadastro = { navController.navigate("cadastro") },
@@ -394,10 +378,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // ALUNO - TELAS PRINCIPAIS
-                    // ══════════════════════════════════════════
-
                     composable("tela_inicial") {
                         TelaInicial(
                             onReservaClick = { navController.navigate("historico") },
@@ -486,10 +467,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // SUPORTE
-                    // ══════════════════════════════════════════
-
                     composable("suporte") {
                         SuporteAlunoScreen(
                             onVoltar          = { navController.popBackStack() },
@@ -514,10 +492,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    // ══════════════════════════════════════════
                     // LIVROS
-                    // ══════════════════════════════════════════
-
                     composable("livros_main") {
                         LivroMainScreen(navController = navController)
                     }

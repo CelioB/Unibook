@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projeto.unibook1.AuthMock
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -29,8 +30,20 @@ fun LoginAlunoScreen(
     onEsqueceuSenha: () -> Unit,
     onLoginSucesso: () -> Unit
 ) {
-    val auth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    val auth = remember {
+        try {
+            FirebaseAuth.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
+    val db = remember {
+        try {
+            FirebaseFirestore.getInstance()
+        } catch (e: Exception) {
+            null
+        }
+    }
 
     var matricula by remember { mutableStateOf("") }
     var senha by remember { mutableStateOf("") }
@@ -44,18 +57,32 @@ fun LoginAlunoScreen(
             return
         }
 
+        // --- INICIO DO LOGIN FALSO (DUMMY) ---
+        if (AuthMock.isUserDummy(matricula, senha)) {
+            onLoginSucesso()
+            return
+        }
+        // --- FIM DO LOGIN FALSO ---
+
+        val currentAuth = auth
+        val currentDb = db
+        if (currentAuth == null || currentDb == null) {
+            mensagemErro = "Erro: Firebase não inicializado"
+            return
+        }
+
         carregando = true
         mensagemErro = ""
 
         // Busca o email associado à matrícula no Firestore
-        db.collection("usuarios")
+        currentDb.collection("usuarios")
             .whereEqualTo("matricula", matricula)
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     val email = documents.documents[0].getString("email")
                     if (email != null) {
-                        auth.signInWithEmailAndPassword(email, senha)
+                        currentAuth.signInWithEmailAndPassword(email, senha)
                             .addOnSuccessListener {
                                 carregando = false
                                 onLoginSucesso()

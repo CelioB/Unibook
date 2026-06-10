@@ -17,9 +17,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projeto.unibook1.ui.StandardBottomContainer
+import com.projeto.unibook1.ui.StandardNavBarItem
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.automirrored.outlined.LibraryBooks
+import androidx.compose.material.icons.outlined.People
 
-val CorPrimaria = Color(0xFF6A1B9A)
-val CorDeFundo = Color(0xFFF8F9FF)
+val CorPrimaria = Color(0xFF2F2C79)
+val CorDeFundo = Color(0xFFF4F6F9)
 
 data class SolicitacaoEmprestimo(
     val nome: String,

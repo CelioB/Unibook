@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.sp
 
 // Objeto de cores local para manter o arquivo independente
 private object AdminColor {
-    val PrimaryPurple = Color(0xFF6A1B9A)
-    val BackgroundGray = Color(0xFFF8F9FF)
+    val PrimaryPurple = Color(0xFF2F2C79)
+    val BackgroundGray = Color(0xFFF4F6F9)
     val TextGray = Color(0xFF6B7280)
     val StatusGreen = Color(0xFF059669)
     val StatusRed = Color(0xFFDC2626)

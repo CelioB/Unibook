@@ -13,6 +13,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projeto.unibook1.AuthMock
 import com.projeto.unibook1.ui.theme.Unibook1Theme
 
 
@@ -43,12 +44,12 @@ fun AdminLoginScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // CAMPO MATRÍCULA (Apenas números)
+        // CAMPO MATRÍCULA (Apenas números ou 'admin' para dummy)
         OutlinedTextField(
             value = matricula,
             onValueChange = { novoValor ->
-                // Só aceita se for número
-                if (novoValor.all { it.isDigit() }) {
+                // Aceita números ou a string 'admin' para facilitar o login fake
+                if (novoValor.all { it.isDigit() } || novoValor == "admin") {
                     matricula = novoValor
                 }
             },
@@ -79,7 +80,7 @@ fun AdminLoginScreen(
         ) {
             Text(
                 text = "Esqueci a senha",
-                color = Color(0xFFA056F3),
+                color = Color(0xFF2196F3),
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 14.sp
             )
@@ -87,10 +88,18 @@ fun AdminLoginScreen(
 
         Button(
             onClick = {
-                // a lógica de validação
+                // --- INICIO DO LOGIN FALSO (DUMMY) ---
+                if (AuthMock.isAdminDummy(matricula, senha)) {
+                    onLoginSuccess()
+                    return@Button
+                }
+                // --- FIM DO LOGIN FALSO ---
+
+                // a lógica de validação real aqui (quando houver)
                 onLoginSuccess()
             },
-            modifier = Modifier.fillMaxWidth().height(50.dp)
+            modifier = Modifier.fillMaxWidth().height(50.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2F2C79))
         ) {
             Text("Entrar")
         }

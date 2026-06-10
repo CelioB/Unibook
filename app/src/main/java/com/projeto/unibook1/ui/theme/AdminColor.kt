@@ -4,8 +4,9 @@ package com.projeto.unibook1.ui.theme
 import androidx.compose.ui.graphics.Color
 
 object AdminColor {
-    val BackgroundGray = Color(0xFFF4F7FD)
-    val PrimaryPurple = Color(0xFF8A2BE2)
+    val BackgroundGray = Color(0xFFF4F6F9)
+    val PrimaryPurple = Color(0xFF2F2C79)
+    val PrimaryBlue = Color(0xFF2196F3)
     val TextGray = Color(0xFF6E7179)
     val StatusRed = Color(0xFFD32F2F)
     val StatusGreen = Color(0xFF00A36C)

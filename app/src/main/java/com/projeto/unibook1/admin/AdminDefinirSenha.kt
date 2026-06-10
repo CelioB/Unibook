@@ -35,8 +35,9 @@ fun DefinirSenhaScreen(
     var novaSenha by remember { mutableStateOf("") }
     var confirmarSenha by remember { mutableStateOf("") }
 
-    val roxoPrincipal = Color(0xFFA056F3)
-    val fundoClaro = Color(0xFFF4F0FA)
+    val adminDarkBlue = Color(0xFF2F2C79)
+    val adminBluePrimary = Color(0xFF2196F3)
+    val fundoClaro = Color(0xFFF4F6F9)
     val cinzaTexto = Color(0xFF666666)
     val fundoInput = Color(0xFFF5F5F5)
 
@@ -81,8 +82,8 @@ fun DefinirSenhaScreen(
                 Column(modifier = Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
                     // Ícone de Escudo/Segurança
-                    Box(modifier = Modifier.size(80.dp).background(roxoPrincipal.copy(0.1f), RoundedCornerShape(20.dp)), contentAlignment = Alignment.Center) {
-                        Icon(Icons.Default.Security, contentDescription = null, tint = roxoPrincipal, modifier = Modifier.size(40.dp))
+                    Box(modifier = Modifier.size(80.dp).background(adminDarkBlue.copy(0.1f), RoundedCornerShape(20.dp)), contentAlignment = Alignment.Center) {
+                        Icon(Icons.Default.Security, contentDescription = null, tint = adminDarkBlue, modifier = Modifier.size(40.dp))
                     }
 
                     Spacer(modifier = Modifier.height(24.dp))
@@ -124,7 +125,7 @@ fun DefinirSenhaScreen(
                     Button(
                         onClick = {  },
                         modifier = Modifier.fillMaxWidth().height(55.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = roxoPrincipal),
+                        colors = ButtonDefaults.buttonColors(containerColor = adminDarkBlue),
                         shape = RoundedCornerShape(28.dp)
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {

@@ -27,8 +27,9 @@ fun AdminConcluirScreen(
     onConcluir: () -> Unit
 ) {
     val fundoClaro = Color(0xFFF4F6F9)
-    val roxoPrincipal = Color(0xFF7B2CBF)
-    val roxoClaro = Color(0xFFF3E5F5)
+    val adminDarkBlue = Color(0xFF2F2C79)
+    val adminBluePrimary = Color(0xFF2196F3)
+    val adminBlueLight = Color(0xFFE8F0FE)
     val verdeBotao = Color(0xFF22C55E)
 
     var vaiLevarCesta by remember { mutableStateOf(true) }
@@ -74,10 +75,10 @@ fun AdminConcluirScreen(
 
         Box(
             modifier = Modifier
-                .background(roxoClaro, RoundedCornerShape(16.dp))
+                .background(adminBlueLight, RoundedCornerShape(16.dp))
                 .padding(horizontal = 16.dp, vertical = 6.dp)
         ) {
-            Text("Perfil do Aluno", color = roxoPrincipal, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            Text("Perfil do Aluno", color = adminBluePrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold)
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -107,7 +108,7 @@ fun AdminConcluirScreen(
             value = "Nenhum selecionado",
             onValueChange = {},
             readOnly = true,
-            trailingIcon = { Icon(Icons.Default.KeyboardArrowDown, null, tint = roxoPrincipal) },
+            trailingIcon = { Icon(Icons.Default.KeyboardArrowDown, null, tint = adminBluePrimary) },
             modifier = Modifier.fillMaxWidth().height(50.dp),
             shape = RoundedCornerShape(12.dp),
             colors = OutlinedTextFieldDefaults.colors(
@@ -136,7 +137,7 @@ fun AdminConcluirScreen(
                     .clickable { vaiLevarCesta = true },
                 contentAlignment = Alignment.Center
             ) {
-                Text("Sim", color = if (vaiLevarCesta) roxoPrincipal else Color.Gray, fontWeight = FontWeight.Bold)
+                Text("Sim", color = if (vaiLevarCesta) adminBluePrimary else Color.Gray, fontWeight = FontWeight.Bold)
             }
             Box(
                 modifier = Modifier
@@ -146,7 +147,7 @@ fun AdminConcluirScreen(
                     .clickable { vaiLevarCesta = false },
                 contentAlignment = Alignment.Center
             ) {
-                Text("Não", color = if (!vaiLevarCesta) roxoPrincipal else Color.Gray, fontWeight = FontWeight.Bold)
+                Text("Não", color = if (!vaiLevarCesta) adminBluePrimary else Color.Gray, fontWeight = FontWeight.Bold)
             }
         }
 

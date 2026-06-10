@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Map
@@ -24,7 +25,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -42,12 +45,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 private val Blue      = Color(0xFF2196F3)
 private val LightBlue = Color(0xFFEFF6FF)
 private val CardBg    = Color(0xFFFFFFFF)
+private val AzureBlue = Color(0xFF1A73E8)
+private val DividerColor = Color(0xFFE0E0E0)
 
 @Composable
 fun ArmarioScreen(
@@ -56,6 +63,31 @@ fun ArmarioScreen(
     onPerdiChaveClick: () -> Unit
 ) {
     Scaffold(
+        topBar = {
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Voltar",
+                            tint = AzureBlue
+                        )
+                    }
+                    Text(
+                        text = "Verificar Armário",
+                        fontSize = 19.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = AzureBlue
+                    )
+                }
+                HorizontalDivider(thickness = 1.dp, color = DividerColor)
+            }
+        },
         bottomBar = {
             NavigationBar(containerColor = CardBg, tonalElevation = 0.dp) {
                 NavigationBarItem(
@@ -97,14 +129,6 @@ fun ArmarioScreen(
                 .padding(paddingValues)
                 .padding(14.dp)
         ) {
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = "⬅️ Verificar Armário",
-                style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF1976D2),
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onBackClick() }
-            )
             Spacer(modifier = Modifier.height(24.dp))
             Card(
                 modifier = Modifier.fillMaxWidth(),
