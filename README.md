@@ -180,6 +180,6 @@ Este projeto foi desenvolvido para fins acadêmicos na Universidade de Fortaleza
 
 <div align="center">
 
-Feito com 📚 por **Davi Noronha Lima** e **Francisco Marinho** — Unifor 2026
+Feito com 📚 — Unifor 2026
 
 </div>
